@@ -7,14 +7,11 @@ import { ProgressBar } from '@/components/ui/ProgressBar'
 import { ArrowLeft, Lightbulb, BookOpen, Brain, Mic } from 'lucide-react'
 import Link from 'next/link'
 import { 
-  learningStages, 
+  completeLearningStages as learningStages,
   getLearningModeCards,
   getRecallModeCards,
-  getMasteredCards 
-} from '@/lib/tibetan-data'
-import { 
-  completeLearningStages,
-  getCardById as getCompleteCardById
+  getMasteredCards,
+  getCardById
 } from '@/lib/complete-tibetan-data'
 import { cn } from '@/lib/utils'
 

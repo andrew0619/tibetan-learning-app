@@ -11,10 +11,9 @@ import {
   suffixes, 
   vowelMarks,
   grammarWords,
-  buddhistVocabulary,
-  getAllAlphabetCards,
-
-} from '@/lib/tibetan-data'
+  getAllCompleteAlphabetCards as getAllAlphabetCards,
+  type CompleteTibetanCard as TibetanCard
+} from '@/lib/complete-tibetan-data'
 import { learningProgressManager } from '@/lib/learning-progress'
 
 export default function AlphabetPage() {

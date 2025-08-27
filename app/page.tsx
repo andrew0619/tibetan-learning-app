@@ -116,7 +116,7 @@ export default function HomePage() {
             </div>
           </Link>
 
-          <Link href="/alphabet" className="group">
+          <Link href="/alphabet-complete" className="group">
             <div className="card p-8 h-full hover:shadow-2xl transition-all duration-300 group-hover:scale-[1.02]">
               <div className="flex items-start justify-between mb-4">
                 <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl flex items-center justify-center">
@@ -124,12 +124,12 @@ export default function HomePage() {
                 </div>
                 <ArrowRight className="w-5 h-5 text-slate-400 group-hover:text-purple-600 transition-colors" />
               </div>
-              <h3 className="text-xl font-semibold text-slate-800 mb-3">字母總表</h3>
+              <h3 className="text-xl font-semibold text-slate-800 mb-3">完整字母系統</h3>
               <p className="text-slate-600 leading-relaxed">
-                按圖索驥，查看所有藏文字母的學習進度
+                學習正確的藏文字母結構，包含前後加字、上下加字的完整系統
               </p>
               <div className="mt-4 text-sm text-purple-600 font-medium">
-                查看總表 →
+                查看完整系統 →
               </div>
             </div>
           </Link>
@@ -203,28 +203,6 @@ export default function HomePage() {
                   <div className="font-yagpo-uni text-2xl text-amber-600">བླ་མ</div>
                   <div className="font-yagpo-uni text-2xl text-orange-600">ཆོས</div>
                   <ArrowRight className="w-5 h-5 text-slate-400 group-hover:text-amber-600 transition-colors" />
-                </div>
-              </div>
-            </div>
-          </Link>
-
-          {/* 完整字母系統 */}
-          <Link href="/alphabet-complete" className="group">
-            <div className="card p-6 hover:shadow-2xl transition-all duration-300 group-hover:scale-[1.01] bg-gradient-to-r from-emerald-50 to-teal-50">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl flex items-center justify-center">
-                    <Layers className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-semibold text-slate-800 mb-1">完整藏文字母系統</h3>
-                    <p className="text-slate-600">系統學習前後加字、上下加字的完整結構</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="font-yagpo-uni text-2xl text-emerald-600">རྒྱལ</div>
-                  <div className="font-yagpo-uni text-2xl text-teal-600">སྐུ</div>
-                  <ArrowRight className="w-5 h-5 text-slate-400 group-hover:text-emerald-600 transition-colors" />
                 </div>
               </div>
             </div>

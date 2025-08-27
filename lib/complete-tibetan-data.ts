@@ -215,3 +215,25 @@ export function getCardsByGroup(group: string): CompleteTibetanCard[] {
 export function getCardById(id: string): CompleteTibetanCard | undefined {
   return getAllCompleteAlphabetCards().find(card => card.id === id)
 }
+
+// 學習模式相關函數
+export function getLearningModeCards(stage?: keyof typeof completeLearningStages): CompleteTibetanCard[] {
+  if (stage) {
+    return completeLearningStages[stage].cards
+  }
+  return getAllCompleteAlphabetCards().filter(card => card.stage === 'learning')
+}
+
+export function getRecallModeCards(stage?: keyof typeof completeLearningStages): CompleteTibetanCard[] {
+  if (stage) {
+    return completeLearningStages[stage].cards.filter(card => card.stage === 'recall')
+  }
+  return getAllCompleteAlphabetCards().filter(card => card.stage === 'recall')
+}
+
+export function getMasteredCards(stage?: keyof typeof completeLearningStages): CompleteTibetanCard[] {
+  if (stage) {
+    return completeLearningStages[stage].cards.filter(card => card.stage === 'mastered')
+  }
+  return getAllCompleteAlphabetCards().filter(card => card.stage === 'mastered')
+}
