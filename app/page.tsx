@@ -1,9 +1,42 @@
+'use client'
+
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { ProgressBar } from '@/components/ui/ProgressBar'
-import { Target, Clock, Flame, BookOpen, ArrowRight, TrendingUp, Grid, Type, Layers, Heart } from 'lucide-react'
+import { Target, Clock, Flame, BookOpen, ArrowRight, TrendingUp, Grid, Type, Layers, Heart, User, LogIn } from 'lucide-react'
 import { learningProgressManager } from '@/lib/learning-progress'
+import { getCurrentUser } from '@/lib/auth'
+import { AuthModal } from '@/components/auth/AuthModal'
+import { UserDashboard } from '@/components/dashboard/UserDashboard'
+import type { User } from '@supabase/supabase-js'
 
 export default function HomePage() {
+  const [user, setUser] = useState<User | null>(null)
+  const [showAuthModal, setShowAuthModal] = useState(false)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    checkUser()
+  }, [])
+
+  const checkUser = async () => {
+    try {
+      const currentUser = await getCurrentUser()
+      setUser(currentUser)
+    } catch (error) {
+      console.error('檢查用戶狀態錯誤:', error)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const handleAuthSuccess = () => {
+    checkUser()
+  }
+
+  const handleSignOut = () => {
+    setUser(null)
+  }
   // 從學習進度管理器獲取實際數據
   const stats = learningProgressManager.getLearningStats()
   // const todayGoal = learningProgressManager.getTodayGoal()
@@ -19,12 +52,26 @@ export default function HomePage() {
       <div className="container mx-auto px-6 py-12 max-w-4xl">
         {/* 標題區域 */}
         <div className="text-center mb-12">
-          <h1 className="text-5xl font-bold text-slate-800 mb-4 tracking-tight">
-            藏文學習
-          </h1>
-          <p className="text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">
-            循序漸進，掌握藏文拼音，開啟你的藏文學習之旅
-          </p>
+          <div className="flex justify-between items-start mb-8">
+            <div className="flex-1"></div>
+            <div className="flex-1">
+              <h1 className="text-5xl font-bold text-slate-800 mb-4 tracking-tight">
+                藏文學習
+              </h1>
+              <p className="text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">
+                循序漸進，掌握藏文拼音，開啟你的藏文學習之旅
+              </p>
+            </div>
+            <div className="flex-1 flex justify-end">
+              <Link 
+                href="/dashboard"
+                className="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors"
+              >
+                <User className="w-4 h-4" />
+                個人中心
+              </Link>
+            </div>
+          </div>
         </div>
 
         {/* 今日進度卡片 */}
