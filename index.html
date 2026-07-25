@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="《普賢行願品》逐偈學習網站：原文、逐句拆解、衍生說明、實用練習與個人進度。" />
+  <meta name="theme-color" content="#1d1830" />
+  <title>普賢行願｜逐偈學習與實修</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main-content">跳到主要內容</a>
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a class="brand" href="#home" aria-label="回到首頁">
+      <span class="brand-mark" aria-hidden="true">願</span>
+      <span>
+        <strong>普賢行願</strong>
+        <small>Samantabhadra Practice Lab</small>
+      </span>
+    </a>
+    <nav class="top-nav" aria-label="主要導覽">
+      <button class="nav-tab is-active" data-view="learn">逐偈學習</button>
+      <button class="nav-tab" data-view="text">原文通讀</button>
+      <button class="nav-tab" data-view="practice">今日實修</button>
+      <button class="nav-tab" data-view="about">關於本站</button>
+    </nav>
+    <div class="header-actions">
+      <button id="font-toggle" class="icon-button" title="調整字級" aria-label="調整字級">字</button>
+      <button id="theme-toggle" class="icon-button" title="切換深淺色" aria-label="切換深淺色">◐</button>
+    </div>
+  </header>
+
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="學習導覽">
+      <div class="progress-card">
+        <div class="progress-ring" id="progress-ring" aria-label="學習進度">
+          <span id="progress-percent">0%</span>
+        </div>
+        <div>
+          <span class="eyebrow">修學進度</span>
+          <strong id="progress-copy">0 / 62 偈</strong>
+          <small>進度儲存在此瀏覽器</small>
+        </div>
+      </div>
+
+      <label class="search-box">
+        <span aria-hidden="true">⌕</span>
+        <input id="search-input" type="search" placeholder="搜尋偈頌、主題或練習" autocomplete="off" />
+      </label>
+
+      <div class="sidebar-heading">
+        <span>十段學習路徑</span>
+        <button id="collapse-all" class="text-button">收合</button>
+      </div>
+      <nav id="section-nav" class="section-nav" aria-label="段落導覽"></nav>
+
+      <div class="sidebar-note">
+        <strong>學習提醒</strong>
+        <p>本站的拆解是學習輔助，不取代具德上師、傳承註釋與個人實修指導。</p>
+      </div>
+    </aside>
+
+    <main id="main-content" class="main-content" tabindex="-1">
+      <section id="learn-view" class="view is-active" aria-labelledby="learn-title">
+        <div class="hero-card">
+          <div>
+            <span class="eyebrow">六十二偈・逐句展開</span>
+            <h1 id="learn-title">把願文讀成一條可以行走的路</h1>
+            <p>每一偈都包含四句原文、逐句提示、核心義、今日練習、反思題與防止誤解的提醒。</p>
+          </div>
+          <div class="hero-stat">
+            <span>今日一偈</span>
+            <strong id="daily-verse-number">—</strong>
+            <button id="jump-daily" class="primary-button">開始今日學習</button>
+          </div>
+        </div>
+
+        <div class="lesson-toolbar" aria-label="學習篩選">
+          <div class="filter-group" role="group" aria-label="完成狀態">
+            <button class="filter-chip is-active" data-filter="all">全部</button>
+            <button class="filter-chip" data-filter="unread">未完成</button>
+            <button class="filter-chip" data-filter="favorite">收藏</button>
+          </div>
+          <span id="result-count" class="result-count">62 偈</span>
+        </div>
+
+        <div id="lesson-list" class="lesson-list" aria-live="polite"></div>
+        <div id="empty-state" class="empty-state" hidden>
+          <span>☸</span>
+          <h2>沒有符合的內容</h2>
+          <p>調整搜尋關鍵字或篩選條件。</p>
+        </div>
+      </section>
+
+      <section id="text-view" class="view" aria-labelledby="text-title">
+        <div class="page-heading">
+          <span class="eyebrow">原文通讀</span>
+          <h1 id="text-title">《普賢行願品》六十二偈</h1>
+          <p>採通行漢譯偈頌，依學習段落重新排版。可勾選「專注模式」隱藏段落標籤。</p>
+          <label class="switch-row"><input id="focus-mode" type="checkbox" /> <span>專注模式</span></label>
+        </div>
+        <article id="full-text" class="full-text"></article>
+      </section>
+
+      <section id="practice-view" class="view" aria-labelledby="practice-title">
+        <div class="page-heading">
+          <span class="eyebrow">Daily Practice</span>
+          <h1 id="practice-title">今日實修</h1>
+          <p>不是完成更多，而是讓一偈真正進入身、語、意。</p>
+        </div>
+        <div class="practice-grid">
+          <article class="daily-card" id="daily-card"></article>
+          <article class="timer-card">
+            <span class="eyebrow">五分鐘安住</span>
+            <div id="timer-display" class="timer-display">05:00</div>
+            <p id="timer-guidance">先讀偈頌三遍，讓呼吸自然，觀察這一偈正在對治什麼。</p>
+            <div class="timer-actions">
+              <button id="timer-start" class="primary-button">開始</button>
+              <button id="timer-reset" class="secondary-button">重設</button>
+            </div>
+          </article>
+          <article class="review-card">
+            <span class="eyebrow">晚間回顧</span>
+            <h2>三門檢視</h2>
+            <div class="review-prompts">
+              <label>身：今天哪個行動最接近這一偈？<textarea data-journal="body"></textarea></label>
+              <label>語：今天哪一句話需要修正或隨喜？<textarea data-journal="speech"></textarea></label>
+              <label>意：今天最強的貪、瞋、癡是什麼？<textarea data-journal="mind"></textarea></label>
+            </div>
+            <button id="save-journal" class="secondary-button">儲存今日回顧</button>
+            <span id="journal-status" class="save-status" role="status"></span>
+          </article>
+        </div>
+      </section>
+
+      <section id="about-view" class="view" aria-labelledby="about-title">
+        <div class="page-heading">
+          <span class="eyebrow">About</span>
+          <h1 id="about-title">本站如何使用原文與解讀</h1>
+        </div>
+        <div class="about-grid">
+          <article class="info-card">
+            <h2>文本原則</h2>
+            <p>本站主文採通行漢譯六十二偈，並參考使用者指定的藏漢對照頁面。不同網站可能有「瞋／嗔」、「降伏／降服」等字形差異，本站統一使用繁體佛典常見寫法。</p>
+          </article>
+          <article class="info-card">
+            <h2>解讀層級</h2>
+            <p>每一偈分為字面方向、修行心理、生活相似實踐與防誤解提醒。凡涉及神通、授記、佛剎與聖者境界，皆標明不可將凡夫相似練習冒充證量。</p>
+          </article>
+          <article class="info-card">
+            <h2>使用方式</h2>
+            <p>建議每日一偈：先讀原文，再看逐句提示，選一項練習，晚上完成三門回顧。每十二偈可做一次段落總複習。</p>
+          </article>
+          <article class="info-card sources-card">
+            <h2>來源與校對</h2>
+            <ul>
+              <li><a href="https://chokyigyatso.pixnet.net/blog/posts/8193401564" target="_blank" rel="noreferrer">使用者指定：《普賢行願品》（藏漢版）</a></li>
+              <li><a href="https://www.6laws.net/99life/lawbook/%E6%99%AE%E8%B3%A2%E8%8F%A9%E8%96%A9%E8%A1%8C%E9%A1%98%E5%93%81.htm" target="_blank" rel="noreferrer">全文對照：大方廣佛華嚴經普賢行願品</a></li>
+            </ul>
+          </article>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <template id="lesson-template">
+    <article class="lesson-card">
+      <header class="lesson-header">
+        <div>
+          <span class="lesson-number"></span>
+          <span class="lesson-section"></span>
+          <h2 class="lesson-title"></h2>
+        </div>
+        <div class="lesson-actions">
+          <button class="icon-button favorite-button" title="收藏" aria-label="收藏">☆</button>
+          <button class="icon-button copy-button" title="複製偈頌" aria-label="複製偈頌">⧉</button>
+        </div>
+      </header>
+      <blockquote class="verse-block"></blockquote>
+      <p class="lesson-summary"></p>
+      <details class="analysis-panel" open>
+        <summary>逐句拆解</summary>
+        <ol class="line-analysis"></ol>
+      </details>
+      <div class="lesson-bottom-grid">
+        <section class="practice-panel">
+          <span class="panel-label">今日練習</span>
+          <p class="practice-copy"></p>
+        </section>
+        <section class="reflection-panel">
+          <span class="panel-label">反思題</span>
+          <p class="reflection-copy"></p>
+        </section>
+      </div>
+      <aside class="caution-panel"><strong>防止誤解</strong><span class="caution-copy"></span></aside>
+      <label class="note-field">我的筆記<textarea placeholder="把這一偈放進自己的生命脈絡……"></textarea></label>
+      <footer class="lesson-footer">
+        <button class="complete-button secondary-button">標記完成</button>
+        <span class="save-status note-status" role="status"></span>
+      </footer>
+    </article>
+  </template>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="./data-sections.js"></script>
+  <script src="./data-01.js"></script>
+  <script src="./data-02.js"></script>
+  <script src="./data-03.js"></script>
+  <script src="./data-04.js"></script>
+  <script src="./data-05.js"></script>
+  <script src="./data-06.js"></script>
+  <script src="./data-07a.js"></script>
+  <script src="./data-07b.js"></script>
+  <script src="./data-08a.js"></script>
+  <script src="./data-08b.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
